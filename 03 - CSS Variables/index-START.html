@@ -21,7 +21,23 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    /* need to declare variabels on an element 
+    declaring on root (highest level like html element) */
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
 
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    .hl {
+      color: var(--base);
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -45,6 +61,8 @@
   </style>
 
   <script>
+
+
   </script>
 
 </body>
