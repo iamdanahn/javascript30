@@ -63,8 +63,6 @@
       width: 100%;
       transition: transform 0.5s;
       
-      border: 1px solid yellow;
-      
       flex: 1 0 auto; /* makes each child take up same amount of space*/
 
       display: flex;
@@ -129,10 +127,23 @@
     console.log(panels);
 
     function toggleOpen() {
-      this.classList.toggle("open");
+      this.classList.toggle("open"); 
+      // adds "open" to class name
+      // this is panel on line 144
+    }
+
+    function toggleActive(e) {
+      console.log(e.propertyName); 
+        // gives event property name (flex-grow, font-size)
+        // ^ happens to be css properties
+      if (e.propertyName.includes("flex")) {
+        this.classList.toggle("open-active")
+        // adds "open-active" to class name
+      }
     }
 
     panels.forEach(panel => panel.addEventListener("click", toggleOpen));
+    panels.forEach(panel => panel.addEventListener("transitionend", toggleActive));
 
   </script>
 
