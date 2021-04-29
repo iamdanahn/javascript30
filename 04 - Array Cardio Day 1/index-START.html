@@ -84,8 +84,8 @@
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
     const vehicles = data.reduce( (obj, item) => {
-      // console.log(obj)
-      // console.log(item)
+      // console.log(obj) obj == {} == undefined
+      // console.log(item) item == instances in data
       if (!obj[item]) {
         obj[item] = 0;
       }
