@@ -24,6 +24,19 @@ fetch(endpoint)
   .then(data => data.json()) // .json returns another promise
   .then(data => cities.push(...data)); // spread data in or array nests into 1st ele
 
+function findMatches(wordToMatch, cities) {
+  return cities.filter(place => {
+    // place.city.includes(wordToMatch)
+
+    const regex = new RegExp(wordToMatch, 'gi') 
+    // 1. word to match
+    // 2. "g" = global, 'i' = insensitive to casing
+    return place.city.match(regex) || place.state.match(regex)
+
+  })
+}
+
+
 </script>
 
 </body>
