@@ -36,6 +36,27 @@ function findMatches(wordToMatch, cities) {
   })
 }
 
+function displayMatches() {
+  const matchArray = findMatches(this.value, cities);
+  const html = matchArray.map(place => {
+    
+    
+    return `
+      <li>
+        <span class="name">${place.city}, ${place.state}</span>
+        <span class="population">${place.population}</span>
+      </li>
+    `
+  }).join('')
+
+  suggestions.innerHTML = html;
+}
+
+const searchInput = document.querySelector(".search") // search box
+const suggestions = document.querySelector(".suggestions") // ul element
+
+searchInput.addEventListener("change", displayMatches) // only fires when off input
+searchInput.addEventListener("keyup", displayMatches) // fires when key is lifted
 
 </script>
 
