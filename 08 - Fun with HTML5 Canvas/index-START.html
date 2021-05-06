@@ -12,7 +12,7 @@
   const ctx = canvas.getContext('2d'); // context is where things are drawn on. can be 2d or 3d
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  ctx.strokeStyle = #BADA55;
+  ctx.strokeStyle = '#BADA55';
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
 
@@ -22,6 +22,31 @@
   let hue = 0;
   let direction = true;
 
+
+  function draw(e) {
+    if (!isDrawing) return // prevents drawing if not mouse down
+    // everything past this line only when mousedown
+
+    console.log(e);
+    ctx.beginPath(); // ctx. enables drawing on canvas
+    
+    // starts from
+    ctx.moveTo(lastX, lastY); 
+    
+    // goes to
+    ctx.lineTo(e.offsetX, e.offsetY); // sets up line to be drawn
+    ctx.stroke(); // draws the actual line
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+  }
+  
+  canvas.addEventListener('mousedown', (e) => {
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+  });
+
+  canvas.addEventListener('mousemove', draw)
+  canvas.addEventListener('mouseup', () => isDrawing = false);
+  canvas.addEventListener('mouseout', () => isDrawing = false);
 
 </script>
 
