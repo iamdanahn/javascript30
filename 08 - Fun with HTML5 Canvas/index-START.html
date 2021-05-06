@@ -15,6 +15,7 @@
   ctx.strokeStyle = '#BADA55';
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
+  ctx.lineWidth = 50;
 
   let isDrawing = false; // kinda like a flag, when pressed down 'true', off "false"
   let lastX = 0;  // creates the end coordinates
@@ -28,6 +29,11 @@
     // everything past this line only when mousedown
 
     console.log(e);
+
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+    // hsl = hue, saturation, lightness
+    // hue increments after each stroke
+
     ctx.beginPath(); // ctx. enables drawing on canvas
     
     // starts from
@@ -37,6 +43,12 @@
     ctx.lineTo(e.offsetX, e.offsetY); // sets up line to be drawn
     ctx.stroke(); // draws the actual line
     [lastX, lastY] = [e.offsetX, e.offsetY];
+    
+    hue++;
+    if (hue >= 360) {
+      hue = 0; // technically don't need this as hue adjusts # > 360
+    }
+
   }
   
   canvas.addEventListener('mousedown', (e) => {
