@@ -23,7 +23,6 @@
   let hue = 0;
   let direction = true;
 
-
   function draw(e) {
     if (!isDrawing) return // prevents drawing if not mouse down
     // everything past this line only when mousedown
@@ -38,7 +37,6 @@
     
     // starts from
     ctx.moveTo(lastX, lastY); 
-    
     // goes to
     ctx.lineTo(e.offsetX, e.offsetY); // sets up line to be drawn
     ctx.stroke(); // draws the actual line
@@ -49,6 +47,15 @@
       hue = 0; // technically don't need this as hue adjusts # > 360
     }
 
+    if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+      direction = !direction; // flip direction to maintain between 1-100
+    }
+
+    if (direction) {
+      ctx.lineWidth++;
+    } else {
+      ctx.lineWidth--;
+    }
   }
   
   canvas.addEventListener('mousedown', (e) => {
