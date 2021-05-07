@@ -31,18 +31,38 @@
     console.log('%c I am some great text', 'font-size:20px')
 
     // warning!
+    console.warn("warning!")
 
     // Error :|
+    console.error("crap!")
 
     // Info
+    console.info('This is a Console.info');
 
     // Testing
+    const p = document.querySelector('p');
+    console.assert(1 === 1, 'This is wrong!')
+    console.assert(1 === 2, 'Console.assert only runs when wrong!')
 
-    // clearing
+    // clearing - clears console
+    // console.clear();
 
     // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
+    // allows to see properties and methods that live on the element
+
+    console.clear()
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`)
+        console.log(`This is ${dog.name}`)
+        console.log(`${dog.name} is ${dog.age} years old`)
+      console.groupEnd(`${dog.name}`)
+    })
+
+    
 
     // counting
 
