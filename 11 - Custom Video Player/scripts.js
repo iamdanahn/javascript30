@@ -20,17 +20,39 @@ function togglePlay() {
 }
 
 function updateButton() {
-  console.log('inside update button fn')
+	console.log("inside update button fn");
 
-  const icon = this.paused ? "►" : "❚ ❚";
-  toggle.textContent = icon;
+	const icon = this.paused ? "►" : "❚ ❚"; // 'this' is bound to video
+	toggle.textContent = icon;
+}
+
+function skip() {
+	console.log(this.dataset.skip);
+	video.currentTime += parseFloat(this.dataset.skip);
+	// parseFloat it because dataset.skip is a string
+}
+
+function handleRangeUpdate() {
+	console.log(this.value);
+	console.log(this.name); // volume or playbackRate
+
+	video[this.name] = this.value;
 }
 
 
+
+
 /* Event listeners */
-video.addEventListener('click', togglePlay);
+video.addEventListener("click", togglePlay);
 video.addEventListener("play", updateButton);
 video.addEventListener("pause", updateButton);
 
-toggle.addEventListener('click', togglePlay);
+toggle.addEventListener("click", togglePlay);
 
+skipButtons.forEach((button) => {
+	button.addEventListener("click", skip);
+});
+ranges.forEach((range) => range.addEventListener("change", handleRangeUpdate));
+ranges.forEach((range) =>
+	range.addEventListener("mousemove", handleRangeUpdate)
+);
