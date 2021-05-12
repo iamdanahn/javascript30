@@ -39,13 +39,18 @@ function handleRangeUpdate() {
 	video[this.name] = this.value;
 }
 
-
-
+function handleProgress() {
+	const percent = (video.currentTime / video.duration) * 100;
+	progressBar.style.flexBasis = `${percent}%`;
+}
 
 /* Event listeners */
 video.addEventListener("click", togglePlay);
 video.addEventListener("play", updateButton);
 video.addEventListener("pause", updateButton);
+video.addEventListener("timeupdate", handleProgress);
+// 'timeupdate' simialr to 'progress'
+
 
 toggle.addEventListener("click", togglePlay);
 
