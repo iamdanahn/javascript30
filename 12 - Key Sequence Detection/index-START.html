@@ -7,6 +7,27 @@
 </head>
 <body>
 <script>
+const pressed =[];
+const secretCode = "banana";
+
+
+  window.addEventListener("keyup", (e) => {
+    console.log(e.key)
+    pressed.push(e.key);
+    
+    pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+    // ^ saves the last length of the secretCode
+
+    if (pressed.join('').includes(secretCode)) {
+      console.log("You got the secret code!")
+      
+    }
+    console.log(pressed);
+
+
+  })
+
+
 </script>
 </body>
 </html>
